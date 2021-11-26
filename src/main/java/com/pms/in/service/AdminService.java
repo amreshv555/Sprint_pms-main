@@ -24,6 +24,7 @@ public class AdminService implements IAdminService{
 
 	@Autowired
 	IAdminRepository adminRepository;
+	
 
 	public Admin register(Admin admin) {
 		LOG.info("Serviceregister");

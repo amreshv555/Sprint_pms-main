@@ -12,6 +12,7 @@ import com.pms.in.exception.BankDoesNotExistsException;
 import com.pms.in.entities.BankDetails;
 import com.pms.in.repository.BankRepository;
 
+
 @Service
 public class BankService implements IBankService {
 
@@ -20,6 +21,7 @@ public class BankService implements IBankService {
 	@Autowired
 	private BankRepository bankRepository;
 
+	
 	public BankDetails getBankDetails(Long accno) {
 		LOG.info("ServicegetBankDetailsById");
 		Optional<BankDetails> bankOpt = bankRepository.findById(accno);
@@ -31,6 +33,8 @@ public class BankService implements IBankService {
 			throw new BankDoesNotExistsException("Bank does not exists");
 		}
 	}
+	
+	
 
 	@Override
 	public BankDetails addBank(BankDetails bankDetails) {
@@ -66,5 +70,6 @@ public class BankService implements IBankService {
 			throw new BankDoesNotExistsException("This bank already exists in the database");
 		}
 	}
+	
 
 }

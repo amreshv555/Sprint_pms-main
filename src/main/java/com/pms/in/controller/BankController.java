@@ -24,6 +24,7 @@ public class BankController {
 
 	@Autowired
 	private BankService bankService;
+   
 
 	@GetMapping("/getbankbyid/{accno}")
 	public ResponseEntity<BankDetails> getBankById(@PathVariable(name = "accno") Long accno) {
@@ -35,6 +36,8 @@ public class BankController {
 		ResponseEntity<BankDetails> response = new ResponseEntity<BankDetails>(ban, headers, HttpStatus.OK);
 		return response;
 	}
+	
+	
 
 	@PostMapping("/addbankdetails")
 	public ResponseEntity<BankDetails> addBank(@RequestBody BankDetails bankDetails) {
