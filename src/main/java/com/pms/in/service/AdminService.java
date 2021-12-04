@@ -65,7 +65,7 @@ public class AdminService implements IAdminService {
 	@Override
 	public String logout(String adminName) {
 		LOG.info("Servicelogout");
-		if (ser.getIsLoggedIn()) {
+		if (isLoggedIn) {
 			isLoggedIn = false;
 			return "User logged out successfully.";
 		} else {
