@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pms.in.entities.BankDetails;
+import com.pms.in.service.AdminService;
 import com.pms.in.service.BankService;
 
 @RestController
@@ -24,6 +25,15 @@ public class BankController {
 
 	@Autowired
 	private BankService bankService;
+	
+	@Autowired
+	public AdminService admin;
+	
+	
+	
+	
+
+	
    
 
 	@GetMapping("/getbankbyid/{accno}")

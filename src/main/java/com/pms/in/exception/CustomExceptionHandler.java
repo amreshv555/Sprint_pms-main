@@ -34,7 +34,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> handleBankNotAddedException() {
 		LOG.error("handleBankAlreadyAddedException");
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("message", "This Bank is NOT available in the database.");
+		headers.add("message", "This Bank Details is NOT found.");
 		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 	}
 
@@ -58,7 +58,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> handleAdminDoesNotExistsException() {
 		LOG.error("handleAdminDoesNotExists");
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("message", "This admin is not logged in.");
+		headers.add("message", "Admin has to logged in first.");
 		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 	}
 	

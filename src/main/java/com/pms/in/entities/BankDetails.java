@@ -15,10 +15,10 @@ public class BankDetails {
 	@Column(nullable = false)
 	private String bankName;
 
-	@Column
+	@Column(nullable=false)
 	private String branch;
 
-	@Column
+	@Column(nullable=false)
 	private String ifscCode;
 
 	@Column(nullable = false)
@@ -26,7 +26,6 @@ public class BankDetails {
 
 	public BankDetails() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public BankDetails(Long accno, String bankName, String branch, String ifscCode, String accHolderName) {

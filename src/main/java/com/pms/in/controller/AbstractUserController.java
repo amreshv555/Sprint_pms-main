@@ -43,8 +43,8 @@ public class AbstractUserController {
 	return response;
 }
 
-	@PutMapping("/logout")
-	public ResponseEntity<String> logout(@RequestBody String userName) {
+	@PutMapping("/logout/{user}")
+	public ResponseEntity<String> logout(@PathVariable(name="user") String userName) {
 		LOG.info("Controllerlogout");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("message", "User logged out successfully.");

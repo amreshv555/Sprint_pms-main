@@ -12,19 +12,25 @@ import com.pms.in.exception.IncorrectLoginCredentialsException;
 import com.pms.in.repository.IAdminRepository;
 
 @Service
-public class AdminService implements IAdminService{
-	
-	public boolean isLoggedIn;
+public class AdminService implements IAdminService {
+
+	private boolean isLoggedIn;
 
 	private Admin tempUser;
-	
+
 	private Admin tempPassword;
+
+	public boolean getIsLoggedIn() {
+		return isLoggedIn;
+	}
 
 	private static final Logger LOG = LoggerFactory.getLogger(AbstractUserService.class);
 
 	@Autowired
 	IAdminRepository adminRepository;
-	
+
+	@Autowired
+	AdminService ser;
 
 	public Admin register(Admin admin) {
 		LOG.info("Serviceregister");
@@ -40,28 +46,33 @@ public class AdminService implements IAdminService{
 	@Override
 	public Admin login(String username, String password) {
 		LOG.info("login");
-		this.tempUser = adminRepository.findByAdminName(username);
-		this.tempPassword=adminRepository.findByPassword(tempUser.getPassword());
-		if (tempUser.getAdminName().equalsIgnoreCase(username) && tempPassword.getPassword().equals(password)) {
-			LOG.info("Logged in successfully.");
-			isLoggedIn = true;
-			return tempUser;
+		try {
+			this.tempUser = adminRepository.findByAdminName(username);
+			this.tempPassword = adminRepository.findByPassword(tempUser.getPassword());
+			if (tempUser.getAdminName().equalsIgnoreCase(username) && tempPassword.getPassword().equals(password)) {
+				LOG.info("Logged in successfully.");
+				isLoggedIn = true;
+				return tempUser;
+			}
+			LOG.error("Admin not found");
+			throw new IncorrectLoginCredentialsException();
+		} catch (Exception e) {
+			LOG.error("Admin not found");
+			throw new IncorrectLoginCredentialsException();
 		}
-		LOG.error("Admin not found");
-		throw new IncorrectLoginCredentialsException();
 	}
-	
+
 	@Override
 	public String logout(String adminName) {
 		LOG.info("Servicelogout");
-		if (isLoggedIn) {
+		if (ser.getIsLoggedIn()) {
 			isLoggedIn = false;
 			return "User logged out successfully.";
-		}else {
-		LOG.error("User not found");
-		throw new AdminDoesNotExistsException();
-	}
-		
+		} else {
+			LOG.error("User not found");
+			throw new AdminDoesNotExistsException();
+		}
+
 	}
 
 }
