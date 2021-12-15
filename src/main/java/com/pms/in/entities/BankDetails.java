@@ -3,13 +3,13 @@ package com.pms.in.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
 
 @Entity
-@Table(name = "bank_deatils")
 public class BankDetails {
 
 	@Id
+	@Column(nullable = false)
 	private Long accno;
 
 	@Column(nullable = false)

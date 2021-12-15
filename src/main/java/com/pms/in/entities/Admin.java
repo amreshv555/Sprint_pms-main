@@ -18,7 +18,7 @@ public class Admin {
 	@Column(unique = true, nullable = false)
 	private String adminName;
 
-	@Column(unique = true, nullable = false)
+	@Column
 	private String password;
 
 	public Admin() {

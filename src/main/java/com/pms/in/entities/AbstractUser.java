@@ -15,10 +15,10 @@ public class AbstractUser {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int uid;
 
-	@Column(unique = true, nullable=false)
+	@Column(unique = true)
 	private String userName;
 
-	@Column(unique = true, nullable=false)
+	@Column
 	private String password;
 
 	public AbstractUser() {

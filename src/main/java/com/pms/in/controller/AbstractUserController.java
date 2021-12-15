@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,6 +17,7 @@ import com.pms.in.entities.AbstractUser;
 import com.pms.in.service.AbstractUserService;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class AbstractUserController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(AbstractUserController.class);
@@ -32,10 +34,10 @@ public class AbstractUserController {
 		return new ResponseEntity<AbstractUser>(userService.register(abstractUser), headers, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/login/{user}/{password}")
-	public ResponseEntity<AbstractUser> login(@PathVariable(name="user") String userName,@PathVariable(name="password") String password) {
+	@PostMapping("/login")
+	public ResponseEntity<AbstractUser> login(@RequestBody AbstractUser abstractUser) {
 	LOG.info("Controller Login");
-	AbstractUser au = userService.login(userName,password); // line 
+	AbstractUser au = userService.login(abstractUser); // line 
 	HttpHeaders headers = new HttpHeaders();
 	headers.add("message", "User logged in successfully");
 	LOG.info(headers.toString());

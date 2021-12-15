@@ -41,13 +41,14 @@ public class AbstractUserService implements IAbstractUserService {
 	}
 
 	@Override
-	public AbstractUser login(String userName, String password) {
+	public AbstractUser login(AbstractUser abstractUser) {
 		LOG.info("login");
 		try {
-			this.tempUser = abstractUserRepository.findByUserName(userName);
+			this.tempUser = abstractUserRepository.findByUserName(abstractUser.getUserName());
 			this.tempPassword = abstractUserRepository.findByPassword(tempUser.getPassword());
 
-			if (tempUser.getUserName().equalsIgnoreCase(userName) && tempPassword.getPassword().equals(password)) {
+			if (tempUser.getUserName().equalsIgnoreCase(abstractUser.getUserName()) 
+					&& tempPassword.getPassword().equals(abstractUser.getPassword())) {
 
 				LOG.info("Logged in successfully.");
 				isLoggedIn = true;

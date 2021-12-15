@@ -44,12 +44,11 @@ public class PensionerDetails implements Serializable {
 	private PensionDetails pensionDetails;
 
 	@OneToOne
-	@JoinColumn(name = "accno")
+	@JoinColumn(name="accno")
 	private BankDetails bankDetails;
 
 	public PensionerDetails() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public PensionerDetails(int pensioner_id, int age, int aadhar, int pan, int salary, int acc_No,
